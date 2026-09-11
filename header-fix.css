@@ -1,0 +1,5 @@
+/* Fixed site header */
+html{scroll-padding-top:78px}
+.header{position:fixed!important;top:0;left:50%;transform:translateX(-50%);width:100%;z-index:9999}
+main{padding-top:78px}
+@media(max-width:650px){html{scroll-padding-top:68px}.header{height:68px}.nav{top:68px}main{padding-top:68px}}
