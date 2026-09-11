@@ -1,29 +1,35 @@
 (function(){
+  function setLangButton(el, flag, code, label){
+    var icon=el.querySelector('i');
+    var text=el.querySelector('b');
+    if(icon){
+      icon.textContent=flag;
+      icon.style.cssText='display:flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:18px!important;border:0!important;box-shadow:none!important;background:none!important;overflow:visible!important;font-family:Arial,sans-serif!important;font-size:15px!important;line-height:1!important;';
+    } else {
+      icon=document.createElement('i');
+      el.insertBefore(icon,el.firstChild);
+      icon.textContent=flag;
+      icon.style.cssText='display:flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:18px!important;border:0!important;box-shadow:none!important;background:none!important;overflow:visible!important;font-family:Arial,sans-serif!important;font-size:15px!important;line-height:1!important;';
+    }
+    if(text) text.textContent=code;
+    else {
+      text=document.createElement('b');
+      text.textContent=code;
+      el.appendChild(text);
+    }
+    el.setAttribute('aria-label',label);
+    el.title=label;
+  }
+
   function fixLanguageSwitcher(){
     document.querySelectorAll('[data-lang="en"], [data-language="en"]').forEach(function(el){
-      el.innerHTML='<span class="lang-flag" aria-hidden="true" style="display:inline-block!important;visibility:visible!important;opacity:1!important;font-family:Arial,sans-serif!important;font-size:1em!important;line-height:1!important;">🇺🇸</span> <span class="lang-code">EN</span>';
-      el.setAttribute('aria-label','English');
-      el.title='English';
+      setLangButton(el,'🇺🇸','EN','English');
     });
-
+    document.querySelectorAll('[data-lang="ru"], [data-language="ru"]').forEach(function(el){
+      setLangButton(el,'🇷🇺','RU','Русский');
+    });
     document.querySelectorAll('[data-lang="hy"], [data-language="hy"]').forEach(function(el){
-      el.innerHTML='<span class="lang-flag" aria-hidden="true" style="display:inline-block!important;visibility:visible!important;opacity:1!important;font-family:Arial,sans-serif!important;font-size:1em!important;line-height:1!important;">🇦🇲</span> <span class="lang-code">AM</span>';
-      el.setAttribute('aria-label','Հայերեն');
-      el.title='Հայերեն';
-    });
-
-    document.querySelectorAll('.lang-switcher').forEach(function(switcher){
-      switcher.querySelectorAll('button,a,[role="button"]').forEach(function(el){
-        var text=(el.textContent||'').trim();
-        if(text==='EN' || text==='GB' || text==='🇬🇧 EN'){
-          el.innerHTML='<span class="lang-flag" aria-hidden="true" style="display:inline-block!important;visibility:visible!important;opacity:1!important;font-family:Arial,sans-serif!important;font-size:1em!important;line-height:1!important;">🇺🇸</span> <span class="lang-code">EN</span>';
-          el.title='English';
-        }
-        if(text==='AM' || text==='HY' || text==='🇭🇾 HY'){
-          el.innerHTML='<span class="lang-flag" aria-hidden="true" style="display:inline-block!important;visibility:visible!important;opacity:1!important;font-family:Arial,sans-serif!important;font-size:1em!important;line-height:1!important;">🇦🇲</span> <span class="lang-code">AM</span>';
-          el.title='Հայերեն';
-        }
-      });
+      setLangButton(el,'🇦🇲','AM','Հայերեն');
     });
   }
 
