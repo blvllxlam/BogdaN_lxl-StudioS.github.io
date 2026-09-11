@@ -11,12 +11,12 @@ function init(){
  const order=document.getElementById('modalOrder');
  const close=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''};
  const open=(card)=>{
+  const v=card.querySelector('.project-visual');
   title.textContent=trText(card.dataset.title||card.querySelector('h3')?.textContent||'Service');
   type.textContent=trText(card.dataset.type||card.querySelector('.project-meta')?.textContent||'SERVICE');
   text.textContent=trText(card.dataset.text||card.querySelector('p')?.textContent||'');
   price.textContent=card.dataset.price||'PRICE — PRICE';
   preview.innerHTML='<span>SITE PREVIEW</span>';
-  const v=card.querySelector('.project-visual');
   if(v){
    const clone=v.cloneNode(true);
    clone.querySelectorAll('.visual-corner,.service-visual>span').forEach(x=>x.remove());
@@ -30,11 +30,20 @@ function init(){
   document.body.style.overflow='hidden';
  };
  document.addEventListener('click',function(e){
-  const card=e.target.closest('.project-card');
-  if(!card || card.tagName.toLowerCase()==='a') return;
-  e.preventDefault();
-  open(card);
- });
+  const service=e.target.closest('.service-project-card');
+  if(service){
+   e.preventDefault();
+   e.stopImmediatePropagation();
+   window.location.href=service.getAttribute('href');
+   return;
+  }
+  const offer=e.target.closest('.web-offer-card');
+  if(offer){
+   e.preventDefault();
+   e.stopImmediatePropagation();
+   open(offer);
+  }
+ },true);
  document.getElementById('modalClose')?.addEventListener('click',close);
  document.getElementById('modalBackdrop')?.addEventListener('click',close);
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
