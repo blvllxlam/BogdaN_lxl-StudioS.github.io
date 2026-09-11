@@ -1,19 +1,48 @@
 (function(){
 'use strict';
 
-const translations={
-ru:{
-'Home':'Главная','Services':'Услуги','About':'Обо мне','Contact':'Контакты','HI, I\'M BOGDAN':'ПРИВЕТ, Я БОГДАН','DIGITAL':'ЦИФРОВЫЕ','SOLUTIONS':'РЕШЕНИЯ','DIGITAL SOLUTIONS FOR BUSINESS':'ЦИФРОВЫЕ РЕШЕНИЯ ДЛЯ БИЗНЕСА','Explore services':'Посмотреть услуги','Contact me':'Связаться со мной','Web Development':'Разработка сайтов','Landing pages, business websites, catalogues and custom web solutions.':'Лендинги, бизнес-сайты, каталоги и индивидуальные веб-решения.','SEO & Digital Growth':'SEO и цифровой рост','Technical SEO, site structure, on-page optimization and growth roadmaps.':'Техническое SEO, структура сайта, внутренняя оптимизация и планы роста.','Telegram Bots':'Telegram-боты','Custom bots for leads, orders, notifications, automation and integrations.':'Боты для заявок, заказов, уведомлений, автоматизации и интеграций.','FOREX / CRYPTO Trading Automation':'Автоматизация торговли FOREX / CRYPTO','Algorithmic trading systems, Grid EA configuration, testing and optimization.':'Алгоритмические торговые системы, настройка, тестирование и оптимизация Grid EA.','Design':'Дизайн','Visual concepts, graphics, digital assets and design support for brands and products.':'Визуальные концепции, графика и цифровые материалы для брендов и продуктов.','Social Media Marketing':'Продвижение в социальных сетях','Content systems, social media management and digital audience growth.':'Контент-системы, ведение социальных сетей и рост цифровой аудитории.','AI & Automation':'AI и автоматизация','AI assistants, workflow automation, data processing and smart business tools.':'AI-ассистенты, автоматизация процессов, обработка данных и бизнес-инструменты.','Unique Development':'Уникальная разработка','Custom technical solutions built around unusual requirements, workflows or ideas.':'Индивидуальные технические решения под нестандартные задачи и процессы.','About Me':'Обо мне','Contact':'Контакты','GET IN TOUCH':'СВЯЗАТЬСЯ','Let\'s build':'Давайте создадим','something great.':'что-то действительно крутое.','Have a project in mind or want to discuss an opportunity?':'Есть проект или хотите обсудить сотрудничество?','Email me':'Написать на Email','View service':'Открыть услугу'},
-hy:{'Home':'Գլխավոր','Services':'Ծառայություններ','About':'Իմ մասին','Contact':'Կապ','HI, I\'M BOGDAN':'ԲԱՐԵՎ, ԵՍ ԲՈԳԴԱՆՆ ԵՄ','DIGITAL':'ԹՎԱՅԻՆ','SOLUTIONS':'ԼՈՒԾՈՒՄՆԵՐ','DIGITAL SOLUTIONS FOR BUSINESS':'ԹՎԱՅԻՆ ԼՈՒԾՈՒՄՆԵՐ ԲԻԶՆԵՍԻ ՀԱՄԱՐ','Explore services':'Դիտել ծառայությունները','Contact me':'Կապվել ինձ հետ','Web Development':'Կայքերի մշակում','Landing pages, business websites, catalogues and custom web solutions.':'Լենդինգներ, բիզնես կայքեր, կատալոգներ և անհատական վեբ լուծումներ։','SEO & Digital Growth':'SEO և թվային աճ','Technical SEO, site structure, on-page optimization and growth roadmaps.':'Տեխնիկական SEO, կայքի կառուցվածք, ներքին օպտիմալացում և աճի պլաններ։','Telegram Bots':'Telegram բոտեր','Custom bots for leads, orders, notifications, automation and integrations.':'Բոտեր հայտերի, պատվերների, ծանուցումների, ավտոմատացման և ինտեգրումների համար։','FOREX / CRYPTO Trading Automation':'FOREX / CRYPTO թրեյդինգի ավտոմատացում','Algorithmic trading systems, Grid EA configuration, testing and optimization.':'Ալգորիթմական թրեյդինգի համակարգեր, Grid EA-ի կարգավորում, թեստավորում և օպտիմալացում։','Design':'Դիզայն','Visual concepts, graphics, digital assets and design support for brands and products.':'Վիզուալ կոնցեպտներ, գրաֆիկա և թվային նյութեր բրենդների ու պրոդուկտների համար։','Social Media Marketing':'Սոցիալական մեդիայի մարքեթինգ','Content systems, social media management and digital audience growth.':'Կոնտենտի համակարգեր, սոցիալական ցանցերի վարում և լսարանի աճ։','AI & Automation':'AI և ավտոմատացում','AI assistants, workflow automation, data processing and smart business tools.':'AI օգնականներ, գործընթացների ավտոմատացում, տվյալների մշակում և բիզնես գործիքներ։','Unique Development':'Յուրահատուկ մշակում','Custom technical solutions built around unusual requirements, workflows or ideas.':'Անհատական տեխնիկական լուծումներ ոչ ստանդարտ խնդիրների և գործընթացների համար։','About Me':'Իմ մասին','GET IN TOUCH':'ԿԱՊՎԵԼ','Let\'s build':'Եկեք ստեղծենք','something great.':'ինչ-որ հիանալի բան։','Have a project in mind or want to discuss an opportunity?':'Ունե՞ք նախագիծ կամ ցանկանում եք քննարկել համագործակցությունը։','Email me':'Գրել Email-ով','View service':'Դիտել ծառայությունը'}};
-
-const original=new WeakMap();
-function remember(){document.querySelectorAll('body *').forEach(el=>{if(el.children.length===0&&!original.has(el))original.set(el,el.textContent.trim())})}
-function apply(lang){remember();const dict=translations[lang]||{};document.querySelectorAll('body *').forEach(el=>{if(el.children.length===0&&original.has(el)){const s=original.get(el);el.textContent=dict[s]||s}});document.documentElement.lang=lang;document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('siteLang',lang)}
 function init(){
-const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();
-const menu=document.getElementById('menuBtn'),nav=document.getElementById('nav');if(menu&&nav){menu.addEventListener('click',function(){nav.classList.toggle('open')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){nav.classList.remove('open')}))}
-const header=document.querySelector('.header');if(header){const sw=document.createElement('div');sw.className='lang-switch';sw.innerHTML='<button type="button" data-lang="en">EN</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="hy">AM</button>';sw.addEventListener('click',function(e){const b=e.target.closest('button');if(!b)return;e.preventDefault();e.stopPropagation();apply(b.dataset.lang)});header.appendChild(sw)}
-apply(localStorage.getItem('siteLang')||'en');
+  const year=document.getElementById('year');
+  if(year) year.textContent=new Date().getFullYear();
+
+  const menu=document.getElementById('menuBtn');
+  const nav=document.getElementById('nav');
+  if(menu&&nav){
+    menu.addEventListener('click',function(){nav.classList.toggle('open')});
+    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
+  }
+
+  const header=document.querySelector('.header');
+  if(!header)return;
+
+  const sw=document.createElement('div');
+  sw.className='lang-switch';
+  sw.setAttribute('aria-label','Language');
+  sw.innerHTML='<button type="button" data-lang="en" aria-label="English"><span class="flag flag-en">🇬🇧</span><span>EN</span></button><button type="button" data-lang="ru" aria-label="Russian"><span class="flag flag-ru">🇷🇺</span><span>RU</span></button><button type="button" data-lang="hy" aria-label="Armenian"><span class="flag flag-am">🇦🇲</span><span>AM</span></button>';
+  header.appendChild(sw);
+
+  sw.addEventListener('click',function(e){
+    const button=e.target.closest('button');
+    if(!button)return;
+    e.preventDefault();
+    e.stopPropagation();
+    setLanguage(button.dataset.lang);
+  });
+
+  setLanguage(localStorage.getItem('siteLang')||'en');
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+
+function setLanguage(lang){
+  document.documentElement.lang=lang;
+  localStorage.setItem('siteLang',lang);
+  document.querySelectorAll('.lang-switch button').forEach(function(button){
+    button.classList.toggle('active',button.dataset.lang===lang);
+  });
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',init,{once:true});
+}else{
+  init();
+}
 })();
