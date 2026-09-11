@@ -89,38 +89,42 @@
     flag.setAttribute('aria-hidden', 'true');
   }
 
+  function setTextIfNeeded(node, value) {
+    if (node && node.textContent !== value) node.textContent = value;
+  }
+
   function fixLanguageLabels() {
     document.querySelectorAll('.lang-switch button[data-lang="en"]').forEach(function (button) {
       ensureFlag(button);
       var text = button.querySelector('b');
-      if (text) text.textContent = 'EN';
-      else if (button.childNodes.length > 1) {
-        button.lastChild.textContent = 'EN';
+      if (text) setTextIfNeeded(text, 'EN');
+      else if (button.childNodes.length > 1 && button.lastChild.nodeType === 3) {
+        setTextIfNeeded(button.lastChild, 'EN');
       }
       button.setAttribute('aria-label', 'English');
-      button.title = 'English';
+      if (button.title !== 'English') button.title = 'English';
     });
 
     document.querySelectorAll('.lang-switch button[data-lang="ru"]').forEach(function (button) {
       ensureFlag(button);
       var text = button.querySelector('b');
-      if (text) text.textContent = 'RU';
-      else if (button.childNodes.length > 1) {
-        button.lastChild.textContent = 'RU';
+      if (text) setTextIfNeeded(text, 'RU');
+      else if (button.childNodes.length > 1 && button.lastChild.nodeType === 3) {
+        setTextIfNeeded(button.lastChild, 'RU');
       }
       button.setAttribute('aria-label', 'Русский');
-      button.title = 'Русский';
+      if (button.title !== 'Русский') button.title = 'Русский';
     });
 
     document.querySelectorAll('.lang-switch button[data-lang="hy"]').forEach(function (button) {
       ensureFlag(button);
       var text = button.querySelector('b');
-      if (text) text.textContent = 'AM';
-      else if (button.childNodes.length > 1) {
-        button.lastChild.textContent = 'AM';
+      if (text) setTextIfNeeded(text, 'AM');
+      else if (button.childNodes.length > 1 && button.lastChild.nodeType === 3) {
+        setTextIfNeeded(button.lastChild, 'AM');
       }
       button.setAttribute('aria-label', 'Հայերեն');
-      button.title = 'Հայերեն';
+      if (button.title !== 'Հայերեն') button.title = 'Հայերեն';
     });
   }
 
@@ -128,8 +132,16 @@
     injectFlagStyles();
     fixLanguageLabels();
 
-    var observer = new MutationObserver(function () {
-      fixLanguageLabels();
+    var observer = new MutationObserver(function (mutations) {
+      var languageChanged = mutations.some(function (mutation) {
+        return Array.from(mutation.addedNodes).some(function (node) {
+          if (node.nodeType !== 1) return false;
+          return node.matches?.('.lang-switch, .lang-switch button') ||
+                 node.querySelector?.('.lang-switch, .lang-switch button');
+        });
+      });
+
+      if (languageChanged) fixLanguageLabels();
     });
 
     observer.observe(document.body, {
