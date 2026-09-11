@@ -4,6 +4,13 @@ const T={'en':{},'ru':{'WEB DEVELOPMENT':'РАЗРАБОТКА САЙТОВ','Bu
 const original=new Map();
 function tr(s){const l=localStorage.getItem('siteLang')||'en';return(T[l]&&T[l][s])||s} window.tr=tr;
 function translate(){document.querySelectorAll('body *').forEach(el=>{if(el.children.length)return;if(!original.has(el))original.set(el,el.textContent);el.textContent=tr(original.get(el))});const o=document.getElementById('modalOrder');if(o)o.innerHTML=tr('Order')+' <span>↗</span>'}
-function init(){const h=document.querySelector('.header');if(h&&!h.querySelector('.lang-switch')){const s=document.createElement('div');s.className='lang-switch';s.innerHTML='<button type="button" data-lang="en"><span class="flag flag-en"></span><span>EN</span></button><button type="button" data-lang="ru"><span class="flag flag-ru"></span><span>RU</span></button><button type="button" data-lang="hy"><span class="flag flag-am"></span><span>AM</span></button>';h.appendChild(s);s.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;e.preventDefault();e.stopPropagation();localStorage.setItem('siteLang',b.dataset.lang);apply(b.dataset.lang)})}document.querySelectorAll('.web-offer-card').forEach(c=>c.dataset.price='From $100');apply(localStorage.getItem('siteLang')||'en')}
+function init(){
+ const y=document.querySelector('footer span');if(y)y.innerHTML='© '+new Date().getFullYear()+' BOGDAN';
+ const menu=document.getElementById('menuBtn'),nav=document.getElementById('nav');if(menu&&nav)menu.addEventListener('click',()=>nav.classList.toggle('open'));
+ const h=document.querySelector('.header');
+ if(h&&!h.querySelector('.lang-switch')){const s=document.createElement('div');s.className='lang-switch';s.setAttribute('aria-label','Language');s.innerHTML='<button type="button" data-lang="en"><span class="flag flag-en"></span><span>EN</span></button><button type="button" data-lang="ru"><span class="flag flag-ru"></span><span>RU</span></button><button type="button" data-lang="hy"><span class="flag flag-am"></span><span>AM</span></button>';h.appendChild(s);s.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;e.preventDefault();e.stopPropagation();localStorage.setItem('siteLang',b.dataset.lang);apply(b.dataset.lang)})}
+ document.querySelectorAll('.web-offer-card').forEach(c=>c.dataset.price='From $100');apply(localStorage.getItem('siteLang')||'en');
+}
 function apply(l){document.documentElement.lang=l;document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));translate()}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
