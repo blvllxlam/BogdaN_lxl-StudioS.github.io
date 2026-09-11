@@ -1,48 +1,10 @@
 (function(){
 'use strict';
-
-function init(){
-  const year=document.getElementById('year');
-  if(year) year.textContent=new Date().getFullYear();
-
-  const menu=document.getElementById('menuBtn');
-  const nav=document.getElementById('nav');
-  if(menu&&nav){
-    menu.addEventListener('click',function(){nav.classList.toggle('open')});
-    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
-  }
-
-  const header=document.querySelector('.header');
-  if(!header)return;
-
-  const sw=document.createElement('div');
-  sw.className='lang-switch';
-  sw.setAttribute('aria-label','Language');
-  sw.innerHTML='<button type="button" data-lang="en" aria-label="English"><span class="flag flag-en">🇬🇧</span><span>EN</span></button><button type="button" data-lang="ru" aria-label="Russian"><span class="flag flag-ru">🇷🇺</span><span>RU</span></button><button type="button" data-lang="hy" aria-label="Armenian"><span class="flag flag-am">🇦🇲</span><span>AM</span></button>';
-  header.appendChild(sw);
-
-  sw.addEventListener('click',function(e){
-    const button=e.target.closest('button');
-    if(!button)return;
-    e.preventDefault();
-    e.stopPropagation();
-    setLanguage(button.dataset.lang);
-  });
-
-  setLanguage(localStorage.getItem('siteLang')||'en');
-}
-
-function setLanguage(lang){
-  document.documentElement.lang=lang;
-  localStorage.setItem('siteLang',lang);
-  document.querySelectorAll('.lang-switch button').forEach(function(button){
-    button.classList.toggle('active',button.dataset.lang===lang);
-  });
-}
-
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',init,{once:true});
-}else{
-  init();
-}
+const T={en:{},ru:{'Home':'Главная','Services':'Услуги','About':'Обо мне','Contact':'Контакты',"HI, I'M BOGDAN":'ПРИВЕТ, Я БОГДАН','DIGITAL SOLUTIONS':'ЦИФРОВЫЕ РЕШЕНИЯ','I help businesses turn ideas into practical digital products — from websites and automation to creative, marketing and custom technical solutions.':'Помогаю бизнесу превращать идеи в практичные цифровые продукты — от сайтов и автоматизации до креативных, маркетинговых и технических решений.','Explore services':'Смотреть услуги','Contact me':'Связаться со мной','DIGITAL SOLUTIONS FOR BUSINESS':'ЦИФРОВЫЕ РЕШЕНИЯ ДЛЯ БИЗНЕСА','Web Development':'Разработка сайтов','Landing pages, business websites, catalogues and custom web solutions.':'Лендинги, сайты для бизнеса, каталоги и индивидуальные веб-решения.','View service':'Подробнее','SEO & Digital Growth':'SEO и цифровой рост','Technical SEO, site structure, on-page optimization and growth roadmaps.':'Техническое SEO, структура сайта, внутренняя оптимизация и план развития.','Telegram Bots':'Telegram-боты','Custom bots for leads, orders, notifications, automation and integrations.':'Боты для заявок, заказов, уведомлений, автоматизации и интеграций.','FOREX / CRYPTO Trading Automation':'Автоматизация FOREX / CRYPTO','Algorithmic trading systems, Grid EA configuration, testing and optimization.':'Алгоритмические торговые системы, настройка, тестирование и оптимизация Grid EA.','Design':'Дизайн','Visual concepts, graphics, digital assets and design support for brands and products.':'Визуальные концепции, графика, цифровые материалы и дизайн для брендов и продуктов.','Social Media Marketing':'Продвижение в социальных сетях','Content systems, social media management and digital audience growth.':'Контент-системы, ведение социальных сетей и развитие цифровой аудитории.','AI & Automation':'AI и автоматизация','AI assistants, workflow automation, data processing and smart business tools.':'AI-ассистенты, автоматизация процессов, обработка данных и интеллектуальные бизнес-инструменты.','Unique Development':'Уникальная разработка','Custom technical solutions built around unusual requirements, workflows or ideas.':'Индивидуальные технические решения под нестандартные требования, процессы или идеи.','About Me':'Обо мне',"I'm a digital specialist with 4+ years of experience in web studios, working on digital projects and business development.":'Я digital-специалист с опытом более 4 лет в веб-студиях, цифровых проектах и развитии бизнеса.','I have a technical background, learn new tools quickly and enjoy turning business ideas into practical digital solutions. My focus is where technology, digital and business meet.':'У меня технический бэкграунд, я быстро осваиваю новые инструменты и умею превращать бизнес-идеи в практичные цифровые решения. Моя специализация — на стыке технологий, digital и бизнеса.','Problem solving':'Решение задач','Self-learning':'Самообучение','Teamwork':'Командная работа','Results oriented':'Ориентация на результат','LOCATION':'ЛОКАЦИЯ','Yerevan, Armenia':'Ереван, Армения','EXPERIENCE':'ОПЫТ','4+ years in digital & web studio':'4+ года в digital и веб-студии','LANGUAGES':'ЯЗЫКИ','Russian — Native':'Русский — родной','English — B2 written / A2 spoken':'Английский — B2 письменный / A2 устный','FOCUS':'ФОКУС','Web · Digital · AI · Automation · Bots':'Web · Digital · AI · Автоматизация · Боты','GET IN TOUCH':'СВЯЗАТЬСЯ','Let\'s build':'Давайте создадим','something great.':'что-то отличное.','Have a project in mind or want to discuss an opportunity?':'Есть проект или хотите обсудить сотрудничество?','Email me':'Написать на Email','Replace the email and Telegram links in script.js.':'Замените ссылки на Email и Telegram в script.js.'},hy:{'Home':'Գլխավոր','Services':'Ծառայություններ','About':'Իմ մասին','Contact':'Կապ',"HI, I'M BOGDAN":'ԲԱՐԵՎ, ԵՍ ԲՈԳԴԱՆՆ ԵՄ','DIGITAL SOLUTIONS':'ԹՎԱՅԻՆ ԼՈՒԾՈՒՄՆԵՐ','I help businesses turn ideas into practical digital products — from websites and automation to creative, marketing and custom technical solutions.':'Օգնում եմ բիզնեսներին գաղափարները վերածել գործնական թվային պրոդուկտների՝ կայքերից և ավտոմատացումից մինչև ստեղծարար, մարքեթինգային և տեխնիկական լուծումներ։','Explore services':'Դիտել ծառայությունները','Contact me':'Կապվել ինձ հետ','DIGITAL SOLUTIONS FOR BUSINESS':'ԹՎԱՅԻՆ ԼՈՒԾՈՒՄՆԵՐ ԲԻԶՆԵՍԻ ՀԱՄԱՐ','Web Development':'Կայքերի մշակում','Landing pages, business websites, catalogues and custom web solutions.':'Լենդինգներ, բիզնես կայքեր, կատալոգներ և անհատական վեբ լուծումներ։','View service':'Դիտել ծառայությունը','SEO & Digital Growth':'SEO և թվային աճ','Technical SEO, site structure, on-page optimization and growth roadmaps.':'Տեխնիկական SEO, կայքի կառուցվածք, ներքին օպտիմիզացիա և աճի պլաններ։','Telegram Bots':'Telegram բոտեր','Custom bots for leads, orders, notifications, automation and integrations.':'Բոտեր հայտերի, պատվերների, ծանուցումների, ավտոմատացման և ինտեգրացիաների համար։','FOREX / CRYPTO Trading Automation':'FOREX / CRYPTO առևտրի ավտոմատացում','Algorithmic trading systems, Grid EA configuration, testing and optimization.':'Ալգորիթմական առևտրային համակարգեր, Grid EA-ի կարգավորում, թեստավորում և օպտիմիզացիա։','Design':'Դիզայն','Visual concepts, graphics, digital assets and design support for brands and products.':'Վիզուալ կոնցեպտներ, գրաֆիկա, թվային նյութեր և դիզայն բրենդների ու պրոդուկտների համար։','Social Media Marketing':'Սոցիալական մեդիա մարքեթինգ','Content systems, social media management and digital audience growth.':'Կոնտենտ համակարգեր, սոցիալական մեդիայի կառավարում և թվային լսարանի աճ։','AI & Automation':'AI և ավտոմատացում','AI assistants, workflow automation, data processing and smart business tools.':'AI օգնականներ, աշխատանքային գործընթացների ավտոմատացում, տվյալների մշակում և խելացի բիզնես գործիքներ։','Unique Development':'Յուրահատուկ մշակում','Custom technical solutions built around unusual requirements, workflows or ideas.':'Անհատական տեխնիկական լուծումներ՝ ոչ ստանդարտ պահանջների, գործընթացների կամ գաղափարների համար։','About Me':'Իմ մասին',"I'm a digital specialist with 4+ years of experience in web studios, working on digital projects and business development.":'Ես digital մասնագետ եմ՝ վեբ ստուդիաներում, թվային նախագծերում և բիզնեսի զարգացման ոլորտում ավելի քան 4 տարվա փորձով։','I have a technical background, learn new tools quickly and enjoy turning business ideas into practical digital solutions. My focus is where technology, digital and business meet.':'Ունեմ տեխնիկական բեքգրաունդ, արագ յուրացնում եմ նոր գործիքներ և սիրում եմ բիզնես գաղափարները վերածել գործնական թվային լուծումների։ Իմ կենտրոնացումը տեխնոլոգիաների, digital-ի և բիզնեսի հատման կետում է։','Problem solving':'Խնդիրների լուծում','Self-learning':'Ինքնուսուցում','Teamwork':'Թիմային աշխատանք','Results oriented':'Արդյունքի վրա կենտրոնացում','LOCATION':'ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ','Yerevan, Armenia':'Երևան, Հայաստան','EXPERIENCE':'ՓՈՐՁ','4+ years in digital & web studio':'4+ տարի digital և վեբ ստուդիայում','LANGUAGES':'ԼԵԶՈՒՆԵՐ','Russian — Native':'Ռուսերեն — մայրենի','English — B2 written / A2 spoken':'Անգլերեն — B2 գրավոր / A2 բանավոր','FOCUS':'ՈԼՈՐՏ','Web · Digital · AI · Automation · Bots':'Web · Digital · AI · Ավտոմատացում · Բոտեր','GET IN TOUCH':'ԿԱՊՎԵԼ','Let\'s build':'Եկեք ստեղծենք','something great.':'ինչ-որ հիանալի բան։','Have a project in mind or want to discuss an opportunity?':'Ունե՞ք նախագիծ կամ ցանկանում եք քննարկել համագործակցությունը։','Email me':'Գրել Email-ով','Replace the email and Telegram links in script.js.':'Փոխարինեք Email-ի և Telegram-ի հղումները script.js-ում։'}};
+const original=new Map();
+function tr(s){const l=localStorage.getItem('siteLang')||'en';return(T[l]&&T[l][s])||s;}
+function translate(){document.querySelectorAll('body *').forEach(function(el){if(el.children.length)return;if(!original.has(el))original.set(el,el.textContent);el.textContent=tr(original.get(el));});}
+function setLanguage(lang){if(!T[lang])lang='en';document.documentElement.lang=lang;localStorage.setItem('siteLang',lang);document.querySelectorAll('.lang-switch button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang);});translate();}
+function init(){const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();const menu=document.getElementById('menuBtn'),nav=document.getElementById('nav');if(menu&&nav){menu.addEventListener('click',function(){nav.classList.toggle('open');});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');});});}const header=document.querySelector('.header');if(!header)return;const sw=document.createElement('div');sw.className='lang-switch';sw.setAttribute('aria-label','Language');sw.innerHTML='<button type="button" data-lang="en" aria-label="English"><span class="flag flag-en"></span><span>EN</span></button><button type="button" data-lang="ru" aria-label="Russian"><span class="flag flag-ru"></span><span>RU</span></button><button type="button" data-lang="hy" aria-label="Armenian"><span class="flag flag-am"></span><span>AM</span></button>';header.appendChild(sw);sw.addEventListener('click',function(e){const b=e.target.closest('button');if(!b)return;e.preventDefault();e.stopPropagation();setLanguage(b.dataset.lang);});setLanguage(localStorage.getItem('siteLang')||'en');}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
