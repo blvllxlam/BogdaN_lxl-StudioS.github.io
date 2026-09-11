@@ -1,58 +1,65 @@
 (function () {
-  function setLangButton(el, flag, code, label) {
-    var icon = el.querySelector('i');
-    var text = el.querySelector('b');
+  function setLanguageButton(button, code, label, flagBackground) {
+    var icon = button.querySelector('i');
+    var text = button.querySelector('b');
 
+    // Create the flag element if it does not exist.
     if (!icon) {
       icon = document.createElement('i');
-      el.insertBefore(icon, el.firstChild);
+      button.insertBefore(icon, button.firstChild);
     }
 
-    icon.textContent = flag;
+    // Keep the flag as a CSS-rendered rectangle.
+    icon.textContent = '';
     icon.style.cssText = [
-      'display:flex!important',
-      'align-items:center!important',
-      'justify-content:center!important',
-      'width:auto!important',
-      'height:auto!important',
+      'display:block!important',
+      'width:18px!important',
+      'height:12px!important',
       'min-width:18px!important',
-      'border:0!important',
-      'box-shadow:none!important',
-      'background:none!important',
-      'overflow:visible!important',
-      'font-family:Arial,sans-serif!important',
-      'font-size:15px!important',
-      'line-height:1!important'
+      'border-radius:2px!important',
+      'overflow:hidden!important',
+      'box-shadow:0 0 0 1px rgba(255,255,255,.14)!important',
+      'background:' + flagBackground + '!important'
     ].join(';');
 
+    // Create the language code if it does not exist.
     if (!text) {
       text = document.createElement('b');
-      el.appendChild(text);
+      button.appendChild(text);
     }
 
     text.textContent = code;
-    el.setAttribute('aria-label', label);
-    el.title = label;
+    button.setAttribute('aria-label', label);
+    button.title = label;
   }
 
   function fixLanguageSwitcher() {
-    document
-      .querySelectorAll('[data-lang="en"], [data-language="en"]')
-      .forEach(function (el) {
-        setLangButton(el, '🇺🇸', 'EN', 'English');
-      });
+    document.querySelectorAll('[data-lang="en"], [data-language="en"]').forEach(function (button) {
+      setLanguageButton(
+        button,
+        'EN',
+        'English',
+        '#1b4b91'
+      );
+    });
 
-    document
-      .querySelectorAll('[data-lang="ru"], [data-language="ru"]')
-      .forEach(function (el) {
-        setLangButton(el, '🇷🇺', 'RU', 'Русский');
-      });
+    document.querySelectorAll('[data-lang="ru"], [data-language="ru"]').forEach(function (button) {
+      setLanguageButton(
+        button,
+        'RU',
+        'Русский',
+        'linear-gradient(#fff 0 33.33%, #2457a6 33.33% 66.66%, #d52b1e 66.66%)'
+      );
+    });
 
-    document
-      .querySelectorAll('[data-lang="hy"], [data-language="hy"]')
-      .forEach(function (el) {
-        setLangButton(el, '🇦🇲', 'AM', 'Հայերեն');
-      });
+    document.querySelectorAll('[data-lang="hy"], [data-language="hy"]').forEach(function (button) {
+      setLanguageButton(
+        button,
+        'AM',
+        'Հայերեն',
+        'linear-gradient(#d90012 0 33.33%, #0033a0 33.33% 66.66%, #f2a800 66.66%)'
+      );
+    });
   }
 
   function start() {
