@@ -1,0 +1,4 @@
+/* Homepage stability fixes */
+.noise{display:none!important}
+.reveal{opacity:1!important;transform:none!important;transition:none!important}
+*{animation:none!important}
