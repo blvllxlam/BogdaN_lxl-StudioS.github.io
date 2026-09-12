@@ -1,0 +1,73 @@
+/* Language switch layout and uploaded SVG flags. */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 24px;
+    z-index: 10000;
+    flex-shrink: 0;
+}
+
+.lang-switch button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 52px;
+    height: 30px;
+    padding: 4px 7px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: #91a0b3;
+    font: 600 10px/1 Inter, Arial, sans-serif;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.lang-switch button img {
+    width: 22px;
+    height: 16px;
+    display: block;
+    flex: 0 0 auto;
+    object-fit: cover;
+}
+
+.lang-switch button span {
+    display: inline-block;
+}
+
+.lang-switch button:hover,
+.lang-switch button.active {
+    color: #fff;
+    border-color: #24405f;
+    background: #0b1118;
+}
+
+@media (max-width: 650px) {
+    .lang-switch {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        gap: 2px;
+    }
+
+    .lang-switch button {
+        width: 30px;
+        height: 26px;
+        padding: 3px;
+    }
+
+    .lang-switch button img {
+        width: 24px;
+        height: 18px;
+    }
+
+    .lang-switch button span {
+        display: none;
+    }
+}
