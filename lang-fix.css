@@ -1,3 +1,5 @@
+/* Language switch
+   Uses the uploaded SVG flag assets instead of CSS-drawn flags. */
 .lang-switch {
     display: flex;
     align-items: center;
@@ -13,86 +15,50 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    width: 42px;
     height: 30px;
     padding: 4px 7px;
     border: 1px solid transparent;
     border-radius: 4px;
-    background: transparent;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    background-size: 22px 16px;
     color: #91a0b3;
     font: 600 10px/1 Inter, Arial, sans-serif;
     letter-spacing: 0.08em;
     cursor: pointer;
     white-space: nowrap;
-    font-size: 0;
+    font-size: 10px;
+    text-align: right;
 }
 
 .lang-switch button:hover,
 .lang-switch button.active {
     color: #fff;
     border-color: #24405f;
-    background: #0b1118;
+    background-color: #0b1118;
+}
+
+/* Use the uploaded 4:3 SVG flags. */
+.lang-switch button[data-lang="en"] {
+    background-image: url("assets/flags/4x3/us.svg");
+}
+
+.lang-switch button[data-lang="ru"] {
+    background-image: url("assets/flags/4x3/ru.svg");
+}
+
+.lang-switch button[data-lang="hy"] {
+    background-image: url("assets/flags/4x3/am.svg");
 }
 
 .lang-switch button::before {
-    content: "";
-    display: inline-block;
-    width: 22px;
-    height: 14px;
-    flex: 0 0 22px;
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+    display: none;
 }
 
 .lang-switch button::after {
-    font-size: 10px;
-    line-height: 1;
-    letter-spacing: 0.08em;
-}
-
-/* United Kingdom flag */
-.lang-switch button[data-lang="en"]::before {
-    background:
-        linear-gradient(90deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
-        linear-gradient(0deg, transparent 36%, #fff 36%, #fff 64%, transparent 64%),
-        linear-gradient(45deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
-        linear-gradient(-45deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
-        linear-gradient(90deg, transparent 47%, #cf142b 47%, #cf142b 53%, transparent 53%),
-        linear-gradient(0deg, transparent 42%, #cf142b 42%, #cf142b 58%, transparent 58%),
-        #012169;
-}
-
-.lang-switch button[data-lang="en"]::after {
-    content: "EN";
-}
-
-/* Russian flag */
-.lang-switch button[data-lang="ru"]::before {
-    background: linear-gradient(
-        to bottom,
-        #fff 0 33.33%,
-        #164fa0 33.33% 66.66%,
-        #d71920 66.66%
-    );
-}
-
-.lang-switch button[data-lang="ru"]::after {
-    content: "RU";
-}
-
-/* Armenian flag */
-.lang-switch button[data-lang="hy"]::before {
-    background: linear-gradient(
-        to bottom,
-        #d90012 0 33.33%,
-        #0033a0 33.33% 66.66%,
-        #f2a800 66.66%
-    );
-}
-
-.lang-switch button[data-lang="hy"]::after {
-    content: "AM";
+    display: none;
 }
 
 @media (max-width: 650px) {
@@ -106,16 +72,11 @@
     }
 
     .lang-switch button {
-        padding: 4px 5px;
-    }
-
-    .lang-switch button::after {
-        display: none;
-    }
-
-    .lang-switch button::before {
-        width: 24px;
-        height: 15px;
-        flex-basis: 24px;
+        width: 30px;
+        height: 26px;
+        padding: 3px;
+        background-position: center;
+        background-size: 24px 18px;
+        font-size: 0;
     }
 }
