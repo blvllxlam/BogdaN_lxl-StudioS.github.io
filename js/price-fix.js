@@ -27,7 +27,7 @@
         }
     }
 
-    // Render the contact links with the supplied social SVG icons.
+    // Add the contact section's social links and keep their labels localized.
     function setupContact() {
         const actions = document.querySelector('.contact-actions');
         if (!actions) return;
@@ -76,6 +76,90 @@
         }
     }
 
+    // Add isolated contact styles without changing the stable global stylesheet.
+    function addContactStyles() {
+        if (document.getElementById('contact-fix-styles')) return;
+
+        const style = document.createElement('style');
+        style.id = 'contact-fix-styles';
+        style.textContent = `
+            .contact-actions {
+                min-width: min(420px, 100%);
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .contact-social {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 18px;
+                min-height: 54px;
+                padding: 8px 10px 8px 18px;
+                border: 1px solid transparent;
+                border-radius: 6px;
+                color: #c9d8eb;
+                text-decoration: none;
+                font-size: 12px;
+                transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+            }
+
+            .contact-social:hover {
+                background: #0b141e;
+                border-color: #1b3047;
+                transform: translateX(-4px);
+            }
+
+            .contact-social-label {
+                text-align: right;
+                white-space: nowrap;
+            }
+
+            .contact-social-icon {
+                width: 42px;
+                height: 42px;
+                flex: 0 0 42px;
+                display: grid;
+                place-items: center;
+                border: 1px solid #1b3047;
+                border-radius: 6px;
+                background: #091018;
+            }
+
+            .contact-social-icon img {
+                width: 25px;
+                height: 25px;
+                display: block;
+                object-fit: contain;
+            }
+
+            @media (max-width: 950px) {
+                .contact-actions {
+                    width: 100%;
+                    min-width: 0;
+                }
+
+                .contact-social {
+                    justify-content: flex-start;
+                }
+
+                .contact-social-label {
+                    text-align: left;
+                }
+            }
+
+            @media (max-width: 650px) {
+                .contact-social {
+                    padding: 8px 4px;
+                }
+            }
+        `;
+
+        document.head.appendChild(style);
+    }
+
     let timer = null;
 
     // Re-check after modal content changes without creating a mutation loop.
@@ -93,6 +177,7 @@
         setupContact();
     });
 
+    addContactStyles();
     applyPrices();
     setupContact();
 })();
