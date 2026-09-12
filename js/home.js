@@ -77,7 +77,7 @@
         },
         'ai-automation.html': {
             name: 'AI & Automation',
-            type: '04 / AUTOMATION',
+            type: '03 / AUTOMATION',
             text: 'AI assistants, workflow automation, data processing and smart business tools.',
             price: 'AI'
         },
