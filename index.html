@@ -6,6 +6,7 @@
     <meta name="description" content="Bogdan — Digital Solutions. Web development, Marketing, AI and custom development.">
     <title>Bogdan — Digital Solutions</title>
 
+    <!-- Site favicon. -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="shortcut icon" href="assets/favicon.svg">
 
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="language-panel/lang-fix.css">
 </head>
 <body>
+    <!-- Fixed header and navigation. -->
     <header class="header">
         <a class="logo" href="#home">B<span>.</span></a>
 
@@ -36,11 +38,12 @@
     </header>
 
     <main>
+        <!-- Hero: main introduction and visual presentation. -->
         <section class="hero section" id="home">
             <div class="hero-copy reveal">
                 <div class="eyebrow">HI, I'M BOGDAN <i></i></div>
                 <h1>DIGITAL<br><span>SOLUTIONS</span></h1>
-                <div class="hero-tags">WEB <b>•</b> MARKETING <b>•</b> TELEGRAM <b>•</b> DESIGN <b>•</b> AUTOMATION </div>
+                <div class="hero-tags">WEB <b>•</b> MARKETING <b>•</b> TELEGRAM <b>•</b> DESIGN <b>•</b> AUTOMATION</div>
                 <p>I help businesses turn ideas into practical digital products — from websites and automation to creative, marketing and custom technical solutions.</p>
 
                 <div class="actions">
@@ -66,6 +69,7 @@
             </div>
         </section>
 
+        <!-- Services: cards open the shared modal handled by js/home.js. -->
         <section class="section services" id="services">
             <div class="section-head reveal">
                 <div>
@@ -76,6 +80,7 @@
             </div>
 
             <div class="project-grid service-project-grid">
+                <!-- Web Development service card. -->
                 <a class="project-card service-project-card reveal" href="services/web-development.html">
                     <div class="project-visual visual-web service-visual">
                         <div class="browser">
@@ -89,6 +94,7 @@
                     <span class="arrow">View service <span>↗</span></span>
                 </a>
 
+                <!-- Marketing service card. -->
                 <a class="project-card service-project-card reveal" href="services/seo.html">
                     <div class="project-visual visual-chart service-visual">
                         <div class="chart-grid"></div>
@@ -102,17 +108,19 @@
                     <span class="arrow">View service <span>↗</span></span>
                 </a>
 
+                <!-- AI and Automation service card. -->
                 <a class="project-card service-project-card reveal" href="services/ai-automation.html">
                     <div class="project-visual visual-custom service-visual">
                         <div class="custom-code">&lt;/&gt;</div>
                         <div class="custom-lines"></div>
                     </div>
-                    <div class="project-meta">03 / AUTOMATION</div>
+                    <div class="project-meta">04 / AUTOMATION</div>
                     <h3>AI &amp; Automation</h3>
                     <p>AI assistants, workflow automation, data processing and smart business tools.</p>
                     <span class="arrow">View service <span>↗</span></span>
                 </a>
 
+                <!-- Design service card. -->
                 <a class="project-card service-project-card reveal" href="services/design.html">
                     <div class="project-visual visual-design service-visual">
                         <div class="design-shape d1"></div>
@@ -127,6 +135,7 @@
             </div>
         </section>
 
+        <!-- Contact: replace placeholder contact links with real details. -->
         <section class="section contact" id="contact">
             <div class="contact-box reveal">
                 <div>
@@ -144,11 +153,13 @@
         </section>
     </main>
 
+    <!-- Footer year is filled automatically by js/home.js. -->
     <footer>
         <span>© <span id="year"></span> BOGDAN</span>
         <span>BUILD / IMPROVE / GROW</span>
     </footer>
 
+    <!-- Homepage behavior: language switcher, modals and mobile menu. -->
     <script src="js/home.js"></script>
     <script src="js/price-fix.js"></script>
 </body>
