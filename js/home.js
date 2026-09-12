@@ -20,12 +20,8 @@
             'SEO, target advertising, SMM and digital growth solutions for businesses.': 'SEO, таргетированная реклама, SMM и решения для цифрового роста бизнеса.',
             'AI & Automation': 'AI и Автоматизация',
             'AI assistants, workflow automation, data processing and smart business tools.': 'AI-ассистенты, автоматизация процессов, обработка данных и интеллектуальные бизнес-инструменты.',
-            'FOREX / CRYPTO Trading Automation': 'Автоматизация FOREX / CRYPTO',
-            'Algorithmic trading systems, Grid EA configuration, testing and optimization.': 'Алгоритмические торговые системы, настройка, тестирование и оптимизация Grid EA.',
             'Design': 'Дизайн',
             'Visual concepts, graphics, digital assets and design support for brands and products.': 'Визуальные концепции, графика, цифровые материалы и дизайн для брендов и продуктов.',
-            'Unique Development': 'Уникальная разработка',
-            'Custom technical solutions built around unusual requirements, workflows or ideas.': 'Индивидуальные технические решения под нестандартные требования, процессы или идеи.',
             'GET IN TOUCH': 'СВЯЗАТЬСЯ',
             'Let’s build': 'Давайте создадим',
             'something great.': 'что-то отличное.',
@@ -52,12 +48,8 @@
             'SEO, target advertising, SMM and digital growth solutions for businesses.': 'SEO, թիրախային գովազդ, SMM և բիզնեսի թվային աճի լուծումներ։',
             'AI & Automation': 'AI և Ավտոմատացում',
             'AI assistants, workflow automation, data processing and smart business tools.': 'AI օգնականներ, աշխատանքային գործընթացների ավտոմատացում, տվյալների մշակում և խելացի բիզնես գործիքներ։',
-            'FOREX / CRYPTO Trading Automation': 'FOREX / CRYPTO առևտրի ավտոմատացում',
-            'Algorithmic trading systems, Grid EA configuration, testing and optimization.': 'Ալգորիթմական առևտրային համակարգեր, Grid EA-ի կարգավորում, թեստավորում և օպտիմիզացիա։',
             'Design': 'Դիզայն',
             'Visual concepts, graphics, digital assets and design support for brands and products.': 'Վիզուալ կոնցեպտներ, գրաֆիկա, թվային նյութեր և դիզայն բրենդների ու պրոդուկտների համար։',
-            'Unique Development': 'Յուրահատուկ մշակում',
-            'Custom technical solutions built around unusual requirements, workflows or ideas.': 'Անհատական տեխնիկական լուծումներ՝ ոչ ստանդարտ պահանջների, գործընթացների կամ գաղափարների համար։',
             'GET IN TOUCH': 'ԿԱՊՎԵԼ',
             'Let’s build': 'Եկեք ստեղծենք',
             'something great.': 'ինչ-որ հիանալի բան։',
@@ -85,13 +77,13 @@
         },
         'ai-automation.html': {
             name: 'AI & Automation',
-            type: '06 / AI',
+            type: '04 / AUTOMATION',
             text: 'AI assistants, workflow automation, data processing and smart business tools.',
             price: 'AI'
         },
         'design.html': {
             name: 'Design',
-            type: '05 / DESIGN',
+            type: '04 / DESIGN',
             text: 'Visual concepts, graphics, digital assets and design support for brands and products.',
             price: 'From $50'
         }
@@ -106,7 +98,7 @@
         return language === 'en' ? text : (T[language]?.[text] || text);
     }
 
-    // Translate only leaf text nodes so markup inside elements is preserved.
+    // Translate only leaf text nodes so existing markup is preserved.
     function translate() {
         document.querySelectorAll('body *').forEach((element) => {
             if (element.children.length) return;
@@ -122,7 +114,7 @@
         });
     }
 
-    // Build the language switcher with real SVG flag images.
+    // Build the language switcher with the uploaded SVG flags.
     function addLanguages() {
         if (document.querySelector('.lang-switch')) return;
 
@@ -167,19 +159,19 @@
         modal.innerHTML = `
             <div class="modal-backdrop"></div>
             <div class="modal-card">
-                <button class="modal-close">×</button>
+                <button class="modal-close" aria-label="Close">×</button>
                 <div class="modal-type" id="modalType"></div>
                 <h2 id="modalTitle"></h2>
                 <p id="modalText"></p>
                 <div class="modal-content-grid">
                     <div>
-                        <div class="modal-side-label">SITE PREVIEW</div>
+                        <div class="modal-side-label" id="modalPreviewLabel">SITE PREVIEW</div>
                         <div id="modalPreview"></div>
                     </div>
                     <div>
-                        <div class="modal-side-label">PRICE RANGE</div>
+                        <div class="modal-side-label" id="modalPriceLabel">PRICE RANGE</div>
                         <div id="modalPrice"></div>
-                        <a class="btn primary modal-order" href="#contact">
+                        <a class="btn primary modal-order" id="modalOrder" href="#contact">
                             Order <span>↗</span>
                         </a>
                     </div>
@@ -189,17 +181,19 @@
 
         document.body.appendChild(modal);
 
-        modal.querySelector('.modal-close').onclick = closeModal;
-        modal.querySelector('.modal-backdrop').onclick = closeModal;
-        modal.querySelector('.modal-order').onclick = () => {
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+        modal.querySelector('.modal-order').addEventListener('click', (event) => {
+            event.preventDefault();
             closeModal();
+
             setTimeout(() => {
                 document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
             }, 50);
-        };
+        });
     }
 
-    // Return localized service pricing, including multi-line price lists.
+    // Return localized pricing for services with multi-line price lists.
     function modalPrice(service) {
         const language = localStorage.getItem('siteLang') || 'en';
 
@@ -254,6 +248,9 @@
         document.querySelector('#modalTitle').textContent = tr(service.name);
         document.querySelector('#modalText').textContent = tr(service.text);
         document.querySelector('#modalPrice').innerHTML = modalPrice(service);
+        document.querySelector('#modalPreviewLabel').textContent = tr('SITE PREVIEW');
+        document.querySelector('#modalPriceLabel').textContent = tr('PRICE RANGE');
+        document.querySelector('#modalOrder').innerHTML = `${tr('Order')} <span>↗</span>`;
 
         const preview = document.querySelector('#modalPreview');
         preview.innerHTML = '';
@@ -264,14 +261,16 @@
         }
 
         document.querySelector('.modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
 
     // Close the active service modal.
     function closeModal() {
         document.querySelector('.modal')?.classList.remove('open');
+        document.body.style.overflow = '';
     }
 
-    // Apply language changes to the page and to an already-open modal.
+    // Apply language changes to the page and the currently open modal.
     function applyLanguage() {
         translate();
 
@@ -284,12 +283,13 @@
 
         if (!current) return;
 
+        document.querySelector('#modalType').textContent = current.type;
         document.querySelector('#modalTitle').textContent = tr(current.name);
         document.querySelector('#modalText').textContent = tr(current.text);
         document.querySelector('#modalPrice').innerHTML = modalPrice(current);
-        document.querySelectorAll('.modal-side-label')[0].textContent = tr('SITE PREVIEW');
-        document.querySelectorAll('.modal-side-label')[1].textContent = tr('PRICE RANGE');
-        document.querySelector('.modal-order').innerHTML = `${tr('Order')} <span>↗</span>`;
+        document.querySelector('#modalPreviewLabel').textContent = tr('SITE PREVIEW');
+        document.querySelector('#modalPriceLabel').textContent = tr('PRICE RANGE');
+        document.querySelector('#modalOrder').innerHTML = `${tr('Order')} <span>↗</span>`;
     }
 
     // Initialize language switching, service modals and the mobile menu.
