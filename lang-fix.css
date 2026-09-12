@@ -1,1 +1,121 @@
-.lang-switch{display:flex;align-items:center;gap:6px;margin-left:auto;margin-right:24px;z-index:10000;flex-shrink:0}.lang-switch button{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:4px 7px;border:1px solid transparent;border-radius:4px;background:transparent;color:#91a0b3;font:600 10px/1 Inter,Arial,sans-serif;letter-spacing:.08em;cursor:pointer;white-space:nowrap}.lang-switch button:hover,.lang-switch button.active{color:#fff;border-color:#24405f;background:#0b1118}.lang-switch button{font-size:0}.lang-switch button:before{content:"";display:inline-block;width:22px;height:14px;flex:0 0 22px;border-radius:2px;overflow:hidden;position:relative;box-shadow:0 0 0 1px rgba(255,255,255,.12)}.lang-switch button:after{font-size:10px;line-height:1;letter-spacing:.08em}.lang-switch button[data-lang="en"]:before{background-color:#173b91;background-image:linear-gradient(90deg,transparent 43%,#fff 43%,#fff 57%,transparent 57%),linear-gradient(0deg,transparent 38%,#fff 38%,#fff 62%,transparent 62%),linear-gradient(90deg,transparent 47%,#d71920 47%,#d71920 53%,transparent 53%),linear-gradient(0deg,transparent 43%,#d71920 43%,#d71920 57%,transparent 57%),linear-gradient(31deg,transparent 44%,#fff 44%,#fff 50%,transparent 50%),linear-gradient(-31deg,transparent 44%,#fff 44%,#fff 50%,transparent 50%)}.lang-switch button[data-lang="en"]:after{content:"EN"}.lang-switch button[data-lang="ru"]:before{background:linear-gradient(to bottom,#fff 0 33.33%,#164fa0 33.33% 66.66%,#d71920 66.66%)}.lang-switch button[data-lang="ru"]:after{content:"RU"}.lang-switch button[data-lang="hy"]:before{background:linear-gradient(to bottom,#d90012 0 33.33%,#0033a0 33.33% 66.66%,#f2a800 66.66%)}.lang-switch button[data-lang="hy"]:after{content:"AM"}@media(max-width:650px){.lang-switch{position:absolute;right:60px;top:50%;transform:translateY(-50%);margin:0;gap:2px}.lang-switch button{padding:4px 5px}.lang-switch button:after{display:none}.lang-switch button:before{width:24px;height:15px;flex-basis:24px}}
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 24px;
+    z-index: 10000;
+    flex-shrink: 0;
+}
+
+.lang-switch button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 30px;
+    padding: 4px 7px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: #91a0b3;
+    font: 600 10px/1 Inter, Arial, sans-serif;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.lang-switch button:hover,
+.lang-switch button.active {
+    color: #fff;
+    border-color: #24405f;
+    background: #0b1118;
+}
+
+.lang-switch button::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 14px;
+    flex: 0 0 22px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.lang-switch button::after {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+}
+
+/* United Kingdom flag */
+.lang-switch button[data-lang="en"]::before {
+    background:
+        linear-gradient(90deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
+        linear-gradient(0deg, transparent 36%, #fff 36%, #fff 64%, transparent 64%),
+        linear-gradient(45deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
+        linear-gradient(-45deg, transparent 43%, #fff 43%, #fff 57%, transparent 57%),
+        linear-gradient(90deg, transparent 47%, #cf142b 47%, #cf142b 53%, transparent 53%),
+        linear-gradient(0deg, transparent 42%, #cf142b 42%, #cf142b 58%, transparent 58%),
+        #012169;
+}
+
+.lang-switch button[data-lang="en"]::after {
+    content: "EN";
+}
+
+/* Russian flag */
+.lang-switch button[data-lang="ru"]::before {
+    background: linear-gradient(
+        to bottom,
+        #fff 0 33.33%,
+        #164fa0 33.33% 66.66%,
+        #d71920 66.66%
+    );
+}
+
+.lang-switch button[data-lang="ru"]::after {
+    content: "RU";
+}
+
+/* Armenian flag */
+.lang-switch button[data-lang="hy"]::before {
+    background: linear-gradient(
+        to bottom,
+        #d90012 0 33.33%,
+        #0033a0 33.33% 66.66%,
+        #f2a800 66.66%
+    );
+}
+
+.lang-switch button[data-lang="hy"]::after {
+    content: "AM";
+}
+
+@media (max-width: 650px) {
+    .lang-switch {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        gap: 2px;
+    }
+
+    .lang-switch button {
+        padding: 4px 5px;
+    }
+
+    .lang-switch button::after {
+        display: none;
+    }
+
+    .lang-switch button::before {
+        width: 24px;
+        height: 15px;
+        flex-basis: 24px;
+    }
+}
