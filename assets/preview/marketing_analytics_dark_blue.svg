@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<rect width="1600" height="1000" fill="#07090d"/>
+<g font-family="Arial, Helvetica, sans-serif">
+  <text x="90" y="92" fill="#18a8ff" font-size="22" font-weight="700" letter-spacing="5">PERFORMANCE MARKETING</text>
+  <text x="90" y="155" fill="#fff" font-size="54" font-weight="800">Growth is a process.</text>
+  <text x="90" y="205" fill="#fff" font-size="54" font-weight="800">Data makes it <tspan fill="#18a8ff">visible.</tspan></text>
+
+  <!-- KPI cards -->
+  <g>
+    <rect x="90" y="250" width="330" height="155" rx="20" fill="#0d1118" stroke="#202a36"/>
+    <text x="120" y="290" fill="#8e9aaa" font-size="15" font-weight="700">ORGANIC TRAFFIC</text>
+    <text x="120" y="348" fill="#fff" font-size="42" font-weight="800">+184%</text>
+    <text x="120" y="380" fill="#18a8ff" font-size="16">↑ growth vs. previous period</text>
+
+    <rect x="445" y="250" width="330" height="155" rx="20" fill="#0d1118" stroke="#202a36"/>
+    <text x="475" y="290" fill="#8e9aaa" font-size="15" font-weight="700">CONVERSION RATE</text>
+    <text x="475" y="348" fill="#fff" font-size="42" font-weight="800">7.8%</text>
+    <text x="475" y="380" fill="#18a8ff" font-size="16">↑ +2.4 pp improvement</text>
+
+    <rect x="800" y="250" width="330" height="155" rx="20" fill="#0d1118" stroke="#202a36"/>
+    <text x="830" y="290" fill="#8e9aaa" font-size="15" font-weight="700">ROAS</text>
+    <text x="830" y="348" fill="#fff" font-size="42" font-weight="800">4.6×</text>
+    <text x="830" y="380" fill="#18a8ff" font-size="16">↑ efficient acquisition</text>
+
+    <rect x="1155" y="250" width="355" height="155" rx="20" fill="#18a8ff"/>
+    <text x="1185" y="290" fill="#00111d" font-size="15" font-weight="800">CAMPAIGN STATUS</text>
+    <text x="1185" y="348" fill="#fff" font-size="42" font-weight="800">SCALING</text>
+    <text x="1185" y="380" fill="#00111d" font-size="16" font-weight="700">Targets are being reached</text>
+  </g>
+
+  <!-- Main line chart -->
+  <rect x="90" y="450" width="890" height="420" rx="24" fill="#0d1118" stroke="#202a36"/>
+  <text x="125" y="495" fill="#fff" font-size="25" font-weight="800">Traffic &amp; conversion growth</text>
+  <text x="125" y="523" fill="#7f8a99" font-size="15">Illustrative SEO performance analysis</text>
+  <g stroke="#202a36" stroke-width="1">
+    <path d="M125 590H935M125 665H935M125 740H935M125 815H935"/>
+    <path d="M125 565V815M287 565V815M449 565V815M611 565V815M773 565V815M935 565V815"/>
+  </g>
+  <polyline points="125,785 287,760 449,735 611,675 773,625 935,570" fill="none" stroke="#18a8ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="125,800 287,792 449,770 611,750 773,700 935,660" fill="none" stroke="#ffffff" stroke-width="3" opacity=".75"/>
+  <g fill="#18a8ff">
+    <circle cx="125" cy="785" r="6"/><circle cx="287" cy="760" r="6"/><circle cx="449" cy="735" r="6"/>
+    <circle cx="611" cy="675" r="6"/><circle cx="773" cy="625" r="6"/><circle cx="935" cy="570" r="6"/>
+  </g>
+  <g fill="#788494" font-size="13">
+    <text x="120" y="842">W1</text><text x="282" y="842">W2</text><text x="444" y="842">W3</text>
+    <text x="606" y="842">W4</text><text x="768" y="842">W5</text><text x="930" y="842">W6</text>
+  </g>
+  <text x="125" y="875" fill="#18a8ff" font-size="13" font-weight="700">● ORGANIC VISIBILITY</text>
+  <text x="315" y="875" fill="#fff" font-size="13">● CONVERSIONS</text>
+
+  <!-- Funnel -->
+  <rect x="1010" y="450" width="500" height="420" rx="24" fill="#0d1118" stroke="#202a36"/>
+  <text x="1045" y="495" fill="#fff" font-size="25" font-weight="800">Acquisition funnel</text>
+  <text x="1045" y="523" fill="#7f8a99" font-size="15">From reach to action</text>
+  <g>
+    <path d="M1050 565H1470L1400 620H1120Z" fill="#18a8ff"/>
+    <path d="M1120 635H1400L1350 690H1170Z" fill="#117fc1"/>
+    <path d="M1170 705H1350L1310 760H1210Z" fill="#0b5b8b"/>
+  </g>
+  <text x="1080" y="598" fill="#00111d" font-size="16" font-weight="800">REACH · 100K</text>
+  <text x="1170" y="668" fill="#fff" font-size="16" font-weight="800">VISITS · 24K</text>
+  <text x="1220" y="738" fill="#fff" font-size="16" font-weight="800">LEADS · 3.8K</text>
+  <text x="1045" y="815" fill="#18a8ff" font-size="14" font-weight="700">SEO + TARGETING + SMM = FULL-FUNNEL GROWTH</text>
+</g>
+</svg>

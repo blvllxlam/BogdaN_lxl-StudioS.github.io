@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5fbfa"/><stop offset="1" stop-color="#eaf4f5"/></linearGradient>
+  <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e7475"/><stop offset="1" stop-color="#164e63"/></linearGradient>
+  <linearGradient id="phoneScreen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8fcfb"/><stop offset="1" stop-color="#edf6f5"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#164e63" flood-opacity=".18"/></filter>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-opacity=".10"/></filter>
+  <clipPath id="laptopClip"><rect x="92" y="130" width="1010" height="670" rx="4"/></clipPath>
+  <clipPath id="phoneClip"><rect x="1172" y="188" width="328" height="704" rx="38"/></clipPath>
+  <style>
+    .sans{font-family:Arial,Helvetica,sans-serif}.serif{font-family:Georgia,serif}
+  </style>
+</defs>
+<rect width="1600" height="1000" fill="url(#bg)"/>
+
+<!-- LAPTOP -->
+<g filter="url(#shadow)">
+  <rect x="64" y="82" width="1066" height="760" rx="32" fill="#172326"/>
+  <rect x="80" y="98" width="1034" height="728" rx="18" fill="#071314"/>
+  <rect x="92" y="130" width="1010" height="670" fill="#f7fbfa"/>
+  <g clip-path="url(#laptopClip)">
+    <!-- browser -->
+    <rect x="92" y="130" width="1010" height="42" fill="#ffffff"/>
+    <circle cx="115" cy="151" r="5" fill="#d5dddd"/><circle cx="132" cy="151" r="5" fill="#d5dddd"/><circle cx="149" cy="151" r="5" fill="#d5dddd"/>
+    <rect x="180" y="141" width="590" height="20" rx="10" fill="#f1f5f4"/>
+    <text x="198" y="155" class="sans" font-size="9" fill="#8a9a9b">amed-clinic.ru</text>
+    <!-- nav -->
+    <rect x="92" y="172" width="1010" height="72" fill="#ffffff"/>
+    <g transform="translate(124 192)">
+      <circle cx="18" cy="18" r="18" fill="#0e7475"/>
+      <path d="M18 7v22M7 18h22" stroke="white" stroke-width="5" stroke-linecap="round"/>
+      <text x="48" y="16" class="sans" font-weight="700" font-size="18" fill="#173238">АМЕД</text>
+      <text x="48" y="33" class="sans" font-size="8" letter-spacing="2" fill="#789093">КЛИНИКА ЗДОРОВЬЯ</text>
+    </g>
+    <g class="sans" font-size="11" fill="#52676b">
+      <text x="640" y="216">О враче</text><text x="720" y="216">Специализация</text><text x="835" y="216">Услуги</text><text x="900" y="216">Контакты</text>
+    </g>
+    <rect x="964" y="197" width="112" height="30" rx="15" fill="#0e7475"/>
+    <text x="1020" y="216" text-anchor="middle" class="sans" font-weight="700" font-size="10" fill="#fff">Записаться</text>
+
+    <!-- hero -->
+    <rect x="92" y="244" width="1010" height="310" fill="url(#hero)"/>
+    <circle cx="895" cy="350" r="190" fill="#ffffff" opacity=".06"/>
+    <circle cx="970" cy="280" r="90" fill="#ffffff" opacity=".05"/>
+    <g transform="translate(145 294)">
+      <text x="0" y="0" class="sans" font-size="12" letter-spacing="2" fill="#bfe5e2">ВРАЧ-ТЕРАПЕВТ · 15 ЛЕТ ПРАКТИКИ</text>
+      <text x="0" y="55" class="serif" font-size="44" font-weight="700" fill="#fff">Здоровье начинается</text>
+      <text x="0" y="103" class="serif" font-size="44" font-weight="700" fill="#fff">с внимательного врача</text>
+      <text x="0" y="140" class="sans" font-size="15" fill="#d9efed">Персональный подход, доказательная медицина</text>
+      <text x="0" y="163" class="sans" font-size="15" fill="#d9efed">и понятный план лечения без лишнего.</text>
+      <rect x="0" y="194" width="148" height="42" rx="21" fill="#ffffff"/>
+      <text x="74" y="220" text-anchor="middle" class="sans" font-weight="700" font-size="12" fill="#0e7475">Записаться на приём</text>
+    </g>
+    <!-- doctor portrait stylized -->
+    <g transform="translate(805 278)">
+      <ellipse cx="116" cy="225" rx="125" ry="26" fill="#0b424b" opacity=".32"/>
+      <path d="M42 214c4-80 36-120 76-120s72 40 76 120z" fill="#fff"/>
+      <path d="M86 130h64l17 84H69z" fill="#eef6f5"/>
+      <path d="M99 134l20 22 20-22" fill="none" stroke="#c7d9d9" stroke-width="4"/>
+      <circle cx="118" cy="75" r="50" fill="#d7a17f"/>
+      <path d="M70 67c3-48 90-62 101 3-15-10-30-14-49-10-17 3-34 7-52 7z" fill="#2c3a3e"/>
+      <path d="M91 88q27 18 54 0" fill="none" stroke="#8e5e4e" stroke-width="3" stroke-linecap="round"/>
+      <rect x="146" y="107" width="46" height="28" rx="4" fill="#fff" stroke="#b9cdcd" stroke-width="3"/>
+      <line x1="153" y1="112" x2="184" y2="130" stroke="#9db5b6" stroke-width="2"/>
+      <circle cx="96" cy="76" r="4" fill="#314346"/><circle cx="139" cy="76" r="4" fill="#314346"/>
+    </g>
+
+    <!-- content -->
+    <rect x="92" y="554" width="1010" height="246" fill="#ffffff"/>
+    <text x="145" y="598" class="serif" font-size="28" font-weight="700" fill="#173238">Специализация</text>
+    <text x="145" y="621" class="sans" font-size="12" fill="#718487">Приём взрослых пациентов и профилактика заболеваний</text>
+    <g transform="translate(145 646)">
+      <rect width="220" height="105" rx="14" fill="#f4f9f8"/>
+      <circle cx="30" cy="30" r="17" fill="#dceeed"/><path d="M30 20v20M20 30h20" stroke="#0e7475" stroke-width="4" stroke-linecap="round"/>
+      <text x="20" y="65" class="sans" font-size="13" font-weight="700" fill="#173238">Профилактика</text><text x="20" y="84" class="sans" font-size="10" fill="#718487">чекапы и контроль</text>
+    </g>
+    <g transform="translate(385 646)">
+      <rect width="220" height="105" rx="14" fill="#f4f9f8"/>
+      <circle cx="30" cy="30" r="17" fill="#dceeed"/><path d="M22 30h16M30 22v16" stroke="#0e7475" stroke-width="3"/>
+      <text x="20" y="65" class="sans" font-size="13" font-weight="700" fill="#173238">Терапия</text><text x="20" y="84" class="sans" font-size="10" fill="#718487">диагностика и лечение</text>
+    </g>
+    <g transform="translate(625 646)">
+      <rect width="220" height="105" rx="14" fill="#f4f9f8"/>
+      <circle cx="30" cy="30" r="17" fill="#dceeed"/><path d="M22 35c8-18 16-18 17-5 1 12 8 9 10 2" fill="none" stroke="#0e7475" stroke-width="3"/>
+      <text x="20" y="65" class="sans" font-size="13" font-weight="700" fill="#173238">Второе мнение</text><text x="20" y="84" class="sans" font-size="10" fill="#718487">разбор анализов</text>
+    </g>
+    <g transform="translate(865 646)">
+      <rect width="190" height="105" rx="14" fill="#0e7475"/>
+      <text x="20" y="33" class="sans" font-size="10" fill="#bfe5e2">Ближайший приём</text><text x="20" y="62" class="sans" font-size="22" font-weight="700" fill="#fff">Сегодня</text><text x="20" y="84" class="sans" font-size="11" fill="#d9efed">по предварительной записи</text>
+    </g>
+  </g>
+  <rect x="540" y="842" width="114" height="14" rx="7" fill="#252b2e"/>
+  <path d="M36 856h1122l-35 28H71z" fill="#262c2f"/>
+  <path d="M420 857h354l-18 15H438z" fill="#4a5256" opacity=".7"/>
+</g>
+
+<!-- PHONE -->
+<g filter="url(#shadow)">
+  <rect x="1148" y="164" width="376" height="752" rx="52" fill="#172326"/>
+  <rect x="1158" y="174" width="356" height="732" rx="44" fill="#071314"/>
+  <rect x="1172" y="188" width="328" height="704" rx="38" fill="url(#phoneScreen)"/>
+  <g clip-path="url(#phoneClip)">
+    <rect x="1172" y="188" width="328" height="50" fill="#fff"/>
+    <circle cx="1198" cy="213" r="14" fill="#0e7475"/><path d="M1198 204v18M1189 213h18" stroke="#fff" stroke-width="4"/>
+    <text x="1222" y="216" class="sans" font-size="15" font-weight="700" fill="#173238">АМЕД</text>
+    <rect x="1456" y="202" width="25" height="20" rx="10" fill="#eef5f4"/><path d="M1463 208h12M1463 213h12M1463 218h8" stroke="#0e7475" stroke-width="2"/>
+    <rect x="1172" y="238" width="328" height="235" fill="url(#hero)"/>
+    <circle cx="1375" cy="315" r="95" fill="#fff" opacity=".06"/>
+    <text x="1194" y="276" class="sans" font-size="9" letter-spacing="1.4" fill="#bfe5e2">ВРАЧ-ТЕРАПЕВТ</text>
+    <text x="1194" y="314" class="serif" font-size="27" font-weight="700" fill="#fff">Ваше здоровье —</text>
+    <text x="1194" y="346" class="serif" font-size="27" font-weight="700" fill="#fff">в надёжных руках</text>
+    <text x="1194" y="374" class="sans" font-size="10" fill="#d9efed">Доказательная медицина</text>
+    <rect x="1194" y="397" width="130" height="34" rx="17" fill="#fff"/>
+    <text x="1259" y="418" text-anchor="middle" class="sans" font-size="9" font-weight="700" fill="#0e7475">Записаться</text>
+    <!-- portrait -->
+    <g transform="translate(1355 286) scale(.62)">
+      <path d="M42 214c4-80 36-120 76-120s72 40 76 120z" fill="#fff"/>
+      <circle cx="118" cy="75" r="50" fill="#d7a17f"/><path d="M70 67c3-48 90-62 101 3-15-10-30-14-49-10-17 3-34 7-52 7z" fill="#2c3a3e"/>
+      <circle cx="96" cy="76" r="4" fill="#314346"/><circle cx="139" cy="76" r="4" fill="#314346"/>
+      <path d="M91 88q27 18 54 0" fill="none" stroke="#8e5e4e" stroke-width="3"/>
+    </g>
+    <text x="1194" y="508" class="serif" font-size="22" font-weight="700" fill="#173238">О враче</text>
+    <text x="1194" y="531" class="sans" font-size="10" fill="#718487">15 лет клинической практики</text>
+    <rect x="1194" y="553" width="284" height="1" fill="#d7e4e3"/>
+    <g transform="translate(1194 575)"><circle cx="17" cy="17" r="17" fill="#dceeed"/><path d="M17 7v20M7 17h20" stroke="#0e7475" stroke-width="4" stroke-linecap="round"/><text x="48" y="15" class="sans" font-size="12" font-weight="700" fill="#173238">Терапия и профилактика</text><text x="48" y="33" class="sans" font-size="9" fill="#718487">индивидуальный план лечения</text></g>
+    <g transform="translate(1194 638)"><circle cx="17" cy="17" r="17" fill="#dceeed"/><path d="M9 17h16" stroke="#0e7475" stroke-width="3"/><text x="48" y="15" class="sans" font-size="12" font-weight="700" fill="#173238">Разбор анализов</text><text x="48" y="33" class="sans" font-size="9" fill="#718487">понятно о важных показателях</text></g>
+    <rect x="1194" y="720" width="284" height="78" rx="16" fill="#fff" stroke="#d7e4e3"/>
+    <text x="1212" y="746" class="sans" font-size="9" fill="#718487">Ближайший приём</text><text x="1212" y="770" class="sans" font-size="17" font-weight="700" fill="#173238">Сегодня · 18:30</text>
+    <rect x="1376" y="741" width="84" height="34" rx="17" fill="#0e7475"/><text x="1418" y="762" text-anchor="middle" class="sans" font-size="9" font-weight="700" fill="#fff">Запись</text>
+    <rect x="1172" y="820" width="328" height="72" fill="#fff"/>
+    <text x="1194" y="846" class="sans" font-size="9" fill="#718487">Клиника АМЕД · Москва</text><text x="1194" y="867" class="sans" font-size="10" font-weight="700" fill="#0e7475">amed-clinic.ru</text>
+  </g>
+  <rect x="1288" y="178" width="96" height="17" rx="9" fill="#071314"/>
+  <circle cx="1337" cy="186.5" r="3" fill="#263c40"/>
+  <rect x="1285" y="903" width="102" height="5" rx="2.5" fill="#34484b"/>
+</g>
+
+<!-- presentation label -->
+<g transform="translate(1140 935)">
+  <rect width="384" height="38" rx="19" fill="#ffffff" opacity=".9"/>
+  <text x="192" y="24" text-anchor="middle" class="sans" font-size="11" font-weight="700" letter-spacing="1" fill="#0e7475">МЕДИЦИНСКАЯ ВИЗИТКА · ADAPTIVE WEB</text>
+</g>
+</svg>
