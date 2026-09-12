@@ -67,7 +67,21 @@
             name: 'Web Development',
             type: '01 / WEB',
             text: 'Landing pages, business websites, catalogues and custom web solutions.',
-            price: 'From $100'
+            price: 'From $100',
+            previews: [
+                {
+                    label: 'Landing from $100',
+                    image: 'assets/preview/Landing_GameShow_website_mobile_fixed.svg'
+                },
+                {
+                    label: 'Business Card from $100',
+                    image: 'assets/preview/Visitka_Medical_BusinessCard_website_mockup.svg'
+                },
+                {
+                    label: 'Catalogue from $200',
+                    image: 'assets/preview/Catalog_deluxe_apartments_sochi_mockup.svg'
+                }
+            ]
         },
         'seo.html': {
             name: 'Marketing',
@@ -164,11 +178,11 @@
                 <h2 id="modalTitle"></h2>
                 <p id="modalText"></p>
                 <div class="modal-content-grid">
-                    <div>
+                    <div class="modal-preview-column">
                         <div class="modal-side-label" id="modalPreviewLabel">SITE PREVIEW</div>
-                        <div id="modalPreview"></div>
+                        <div class="modal-preview" id="modalPreview"></div>
                     </div>
-                    <div>
+                    <div class="modal-options-column">
                         <div class="modal-side-label" id="modalPriceLabel">PRICE RANGE</div>
                         <div id="modalPrice"></div>
                         <a class="btn primary modal-order" id="modalOrder" href="#contact">
@@ -197,6 +211,18 @@
     function modalPrice(service) {
         const language = localStorage.getItem('siteLang') || 'en';
 
+        if (service.previews) {
+            return service.previews.map((item, index) => `
+                <button
+                    class="web-price-option${index === 0 ? ' active' : ''}"
+                    type="button"
+                    data-preview-index="${index}"
+                >
+                    ${webPriceLabel(index, language)}
+                </button>
+            `).join('');
+        }
+
         if (service.price === 'Marketing') {
             if (language === 'ru') {
                 return 'SEO от 200$<br>Target от 200$<br>SMM от 150$';
@@ -224,6 +250,29 @@
         return price(service.price);
     }
 
+    // Return the localized label for a Web service preview option.
+    function webPriceLabel(index, language) {
+        const labels = {
+            en: [
+                'Landing from $100',
+                'Business Card from $100',
+                'Catalogue from $200'
+            ],
+            ru: [
+                'Лендинг от 100$',
+                'Визитка от 100$',
+                'Каталог от 200$'
+            ],
+            hy: [
+                'Լենդինգ՝ սկսած 100$-ից',
+                'Վիզիտկա՝ սկսած 100$-ից',
+                'Կատալոգ՝ սկսած 200$-ից'
+            ]
+        };
+
+        return labels[language]?.[index] || labels.en[index];
+    }
+
     // Localize simple single-value prices.
     function price(value) {
         const language = localStorage.getItem('siteLang') || 'en';
@@ -232,6 +281,39 @@
         if (language === 'hy') return value.replace('From', 'Սկսած');
 
         return value;
+    }
+
+    // Render the selected Web preview and connect hover/tap events to its options.
+    function setupWebPreview(service) {
+        if (!service.previews) return;
+
+        const preview = document.querySelector('#modalPreview');
+        const price = document.querySelector('#modalPrice');
+        if (!preview || !price) return;
+
+        preview.innerHTML = `
+            <img class="web-preview-image" src="${service.previews[0].image}" alt="">
+        `;
+
+        const image = preview.querySelector('.web-preview-image');
+        const options = price.querySelectorAll('.web-price-option');
+
+        const selectPreview = (index) => {
+            const item = service.previews[index];
+            if (!item || !image) return;
+
+            image.src = item.image;
+
+            options.forEach((option, optionIndex) => {
+                option.classList.toggle('active', optionIndex === index);
+            });
+        };
+
+        options.forEach((option, index) => {
+            option.addEventListener('mouseenter', () => selectPreview(index));
+            option.addEventListener('focus', () => selectPreview(index));
+            option.addEventListener('click', () => selectPreview(index));
+        });
     }
 
     // Open a service card inside the shared homepage modal.
@@ -253,11 +335,15 @@
         document.querySelector('#modalOrder').innerHTML = `${tr('Order')} <span>↗</span>`;
 
         const preview = document.querySelector('#modalPreview');
-        preview.innerHTML = '';
+        if (!service.previews) {
+            preview.innerHTML = '';
 
-        const visual = card.querySelector('.project-visual');
-        if (visual) {
-            preview.appendChild(visual.cloneNode(true));
+            const visual = card.querySelector('.project-visual');
+            if (visual) {
+                preview.appendChild(visual.cloneNode(true));
+            }
+        } else {
+            setupWebPreview(service);
         }
 
         document.querySelector('.modal').classList.add('open');
@@ -290,6 +376,10 @@
         document.querySelector('#modalPreviewLabel').textContent = tr('SITE PREVIEW');
         document.querySelector('#modalPriceLabel').textContent = tr('PRICE RANGE');
         document.querySelector('#modalOrder').innerHTML = `${tr('Order')} <span>↗</span>`;
+
+        if (current.previews) {
+            setupWebPreview(current);
+        }
     }
 
     // Initialize language switching, service modals and the mobile menu.
